@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Emoji.css"
+import EmojiBar from "./EmojiBar";
 
 const EMOJIS = new Map<string, string>(
     [
@@ -37,6 +38,12 @@ export default function Emoji(){
     return (
     <div className="emoji">
         <div className="situacao">{EMOJIS.get(situacao) || "🫥"}</div>
+        <div className="acoes">
+            <EmojiBar emoji="💗"/>
+            <EmojiBar emoji="⚡"/>
+            <EmojiBar emoji="🍕"/>
+            <EmojiBar emoji="💧"/>
+        </div>
         <div className="acoes">
             <button onClick={toHappy}>Vivo</button>
             <button onClick={toSick}>Doente</button>
