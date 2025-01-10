@@ -24,6 +24,16 @@ export default function Emoji(){
         setSituacao("dead")
     }
 
+    function nextState(){
+        const PROX = new Map<string, string>([
+            ["happy", "sick"],
+            ["sick", "dead"],
+            ["dead", "happy"],
+        ])
+
+        setSituacao(PROX.get(situacao) || "happy")
+    }
+
     return (
     <div className="emoji">
         <div className="situacao">{EMOJIS.get(situacao) || "🫥"}</div>
@@ -31,6 +41,7 @@ export default function Emoji(){
             <button onClick={toHappy}>Vivo</button>
             <button onClick={toSick}>Doente</button>
             <button onClick={toDead}>Morto</button>
+            <button onClick={nextState}>Proximo</button>
         </div>
     </div>)
 }
