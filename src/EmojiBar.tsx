@@ -9,11 +9,7 @@ export default function EmojiBar({emoji}: EmojiBarProps){
     const [counter, setCounter] = useState(5)
 
     function changeCounter(){
-        if(counter == 5){
-            setCounter(0)
-        }else{
-            setCounter(counter + 1)
-        }
+        setCounter((prevCounter) => prevCounter === 5 ? 0 : prevCounter+1)
     }
 
     return(
