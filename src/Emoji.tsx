@@ -13,15 +13,15 @@ const EMOJIS = new Map<string, string>(
 export default function Emoji(){
     const [situacao, setSituacao] = useState("happy")
 
-    function toHappy(){
+    function onFeed(){
         setSituacao("happy")
     }
 
-    function toSick(){
+    function onHydrated(){
         setSituacao("sick")
     }
 
-    function toDead(){
+    function onChangeLight(){
         setSituacao("dead")
     }
 
@@ -39,16 +39,16 @@ export default function Emoji(){
     <div className="emoji">
         <div className="situacao">{EMOJIS.get(situacao) || "🫥"}</div>
         <div className="acoes">
-            <EmojiBar emoji="💗"/>
-            <EmojiBar emoji="⚡"/>
-            <EmojiBar emoji="🍕"/>
-            <EmojiBar emoji="💧"/>
+            <EmojiBar emoji="💗" counter={3} />
+            <EmojiBar emoji="⚡" counter={3} />
+            <EmojiBar emoji="🍕" counter={3} />
+            <EmojiBar emoji="💧" counter={3} />
         </div>
         <div className="acoes">
-            <button onClick={toHappy}>Vivo</button>
-            <button onClick={toSick}>Doente</button>
-            <button onClick={toDead}>Morto</button>
-            <button onClick={nextState}>Proximo</button>
+            <button onClick={onFeed}>Dar Comida</button>
+            <button onClick={onHydrated}>Dar Água</button>
+            <button onClick={onChangeLight}>Apagar Luz</button>
+            <button onClick={nextState}>Ciclo</button>
         </div>
     </div>)
 }
