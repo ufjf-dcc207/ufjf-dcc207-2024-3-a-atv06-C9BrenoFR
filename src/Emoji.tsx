@@ -12,41 +12,35 @@ const EMOJIS = new Map<string, string>(
 
 export default function Emoji(){
     const [situacao, setSituacao] = useState("happy")
+    const [saude, setSaude] = useState(3)
+    const [energia, setEnergia] = useState(3)
+    const [comida, setComida] = useState(3)
+    const [agua, setAgua] = useState(3)
 
     function onFeed(){
-        setSituacao("happy")
+        setComida((prevValue) => prevValue === 5 ? prevValue : prevValue+1)
     }
 
-    function onHydrated(){
-        setSituacao("sick")
+    function onDrink(){
+        setAgua((prevValue) => prevValue === 5 ? prevValue : prevValue+1)
     }
 
-    function onChangeLight(){
-        setSituacao("dead")
-    }
+    function onChangeLight(){}
 
-    function nextState(){
-        const PROX = new Map<string, string>([
-            ["happy", "sick"],
-            ["sick", "dead"],
-            ["dead", "happy"],
-        ])
-
-        setSituacao(PROX.get(situacao) || "happy")
-    }
+    function nextState(){}
 
     return (
     <div className="emoji">
         <div className="situacao">{EMOJIS.get(situacao) || "🫥"}</div>
         <div className="acoes">
-            <EmojiBar emoji="💗" counter={3} />
-            <EmojiBar emoji="⚡" counter={3} />
-            <EmojiBar emoji="🍕" counter={3} />
-            <EmojiBar emoji="💧" counter={3} />
+            <EmojiBar emoji="💗" counter={saude} />
+            <EmojiBar emoji="⚡" counter={energia} />
+            <EmojiBar emoji="🍕" counter={comida} />
+            <EmojiBar emoji="💧" counter={agua} />
         </div>
         <div className="acoes">
             <button onClick={onFeed}>Dar Comida</button>
-            <button onClick={onHydrated}>Dar Água</button>
+            <button onClick={onDrink}>Dar Água</button>
             <button onClick={onChangeLight}>Apagar Luz</button>
             <button onClick={nextState}>Ciclo</button>
         </div>
