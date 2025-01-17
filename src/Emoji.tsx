@@ -6,7 +6,7 @@ const EMOJIS = new Map<string, string>(
     [
         ["happy", "😊"],
         ["sick", "🤢"],
-        ["sleepy", "😴"],
+        ["sleepy", "🥱"],
         ["dead", "😵"],
     ]
 );
