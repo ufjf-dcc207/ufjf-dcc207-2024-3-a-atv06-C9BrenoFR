@@ -16,6 +16,7 @@ export default function Emoji(){
     const [energia, setEnergia] = useState(3)
     const [comida, setComida] = useState(3)
     const [agua, setAgua] = useState(3)
+    const [luz, setLuz] = useState(true)
 
     function onFeed(){
         setComida(Math.min(comida + 1, 5))
@@ -25,27 +26,26 @@ export default function Emoji(){
         setAgua(Math.min(agua + 1, 5))
     }
 
-    function onChangeLight(){}
+    function onChangeLight(){
+        setLuz(!luz)
+    }
 
     function nextState(){
-        setComida((prevComida) => {
-            if(prevComida > 0)
-                return prevComida - 1
-            setSaude((prevSaude) => Math.max(0, prevSaude - 1))
-            return prevComida
-        })
-        setAgua((prevAgua) => {
-            if(prevAgua > 0)
-                return prevAgua - 1
-            setSaude((prevSaude) => Math.max(0, prevSaude - 1))
-            return prevAgua
-        })
-        setEnergia((prevEnergia) => {
-            if(prevEnergia > 0)
-                return prevEnergia - 1
-            setSaude((prevSaude) => Math.max(0, prevSaude - 1))
-            return prevEnergia
-        })
+        setComida(Math.max(0, comida - 1))
+        setAgua(Math.max(0, agua - 1))
+        if(luz)
+            setEnergia(Math.max(0, energia - 1))
+        else
+            setEnergia(Math.min(energia + 1, 5))
+
+        if(comida === 0)
+            setSaude(s => Math.max(0, s-1))
+        if(agua === 0)
+            setSaude(s => Math.max(0, s-1))
+        if(energia === 0)
+            setSaude(s => Math.max(0, s-1))
+
+        
     }
 
     return (
@@ -60,7 +60,7 @@ export default function Emoji(){
         <div className="acoes">
             <button onClick={onFeed}>Dar Comida</button>
             <button onClick={onDrink}>Dar Água</button>
-            <button onClick={onChangeLight}>Apagar Luz</button>
+            <button onClick={onChangeLight}>{luz ? "Apagar" : "Ascender"} Luz</button>
             <button onClick={nextState}>Ciclo</button>
         </div>
     </div>)
