@@ -52,16 +52,6 @@ export default function Emoji(){
             let a = agua
             let s = saude
 
-            if(luz){
-                e = Math.max(0, e - 1)
-            }
-            else{
-                e = Math.min(e + 1, 5)
-                if(c > 0 && a > 0){
-                    s = Math.min(s + 1, 5)
-                }
-            }
-
             if(c === 0){
                 s = Math.max(0, s-1)
             }
@@ -70,6 +60,16 @@ export default function Emoji(){
             }
             if(e === 0){
                 s = Math.max(0, s-1)
+            }
+
+            if(luz){
+                e = Math.max(0, e - 1)
+            }
+            else{
+                e = Math.min(e + 1, 5)
+                if(c > 0 && a > 0){
+                    s = Math.min(s + 1, 5)
+                }
             }
 
             c = Math.max(0, c - 1)
